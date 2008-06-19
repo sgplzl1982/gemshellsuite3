@@ -4,7 +4,7 @@
   <module>
     <web>
       <web-uri>GemShellSuitev3-war.war</web-uri>
-      <context-root>/GemShellSuitev3-war</context-root>
+      <context-root>/GemShellSuitev3</context-root>
     </web>
   </module>
   <module>
