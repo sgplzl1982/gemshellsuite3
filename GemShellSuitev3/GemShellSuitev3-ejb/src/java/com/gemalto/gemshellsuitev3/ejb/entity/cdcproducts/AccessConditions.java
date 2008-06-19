@@ -24,14 +24,14 @@ public class AccessConditions implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long accessConditionsID;
 
-    public Long getId() {
-        return id;
+    public Long getAccessConditionsId() {
+        return accessConditionsID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAccessConditionsId(Long id) {
+        this.accessConditionsID = id;
     }
     
     public String getComments() {
