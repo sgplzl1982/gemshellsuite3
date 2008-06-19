@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,11 +22,14 @@ public class AppNames implements Serializable {
     
     private String name;
     private String comments;
+
+    private AppFamilies appfamilies;
+    private AppCategories appCategories;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long appNameId;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)    
     public Long getAppNameId() {
         return appNameId;
     }
@@ -48,5 +52,23 @@ public class AppNames implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    @ManyToOne
+    public AppCategories getAppCategories() {
+        return appCategories;
+    }
+
+    public void setAppCategories(AppCategories appCategories) {
+        this.appCategories = appCategories;
+    }
+
+    @ManyToOne
+    public AppFamilies getAppfamilies() {
+        return appfamilies;
+    }
+
+    public void setAppfamilies(AppFamilies appfamilies) {
+        this.appfamilies = appfamilies;
     }
 }

@@ -25,7 +25,7 @@ public class AppFamilies implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long appFamilyId;
-
+    
     public Long getAppFamilyId() {
         return appFamilyId;
     }
