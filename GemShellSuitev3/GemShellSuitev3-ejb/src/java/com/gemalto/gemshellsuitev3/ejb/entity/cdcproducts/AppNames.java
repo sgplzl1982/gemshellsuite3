@@ -6,12 +6,14 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -27,6 +29,8 @@ public class AppNames implements Serializable {
 
     private AppFamilies appfamilies;
     private AppCategories appCategories;
+    
+    private Collection<AppTypes> appTypes;    
     
     private Long appNameId;
 
@@ -72,5 +76,14 @@ public class AppNames implements Serializable {
 
     public void setAppfamilies(AppFamilies appfamilies) {
         this.appfamilies = appfamilies;
+    }
+    
+    @OneToMany(mappedBy="appNames",cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    public Collection<AppTypes> getAppTypes() {
+        return appTypes;
+    }
+
+    public void setAppTypes(Collection<AppTypes> appTypes) {
+        this.appTypes = appTypes;
     }
 }
