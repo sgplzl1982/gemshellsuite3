@@ -53,7 +53,7 @@ public class BenchFamilies implements Serializable {
     }
     
     @ManyToOne
-    @JoinColumn(name="AppNamesId")
+    @JoinColumn(name="AppCategoriesId")
     public AppCategories getAppCategories() {
         return appCategories;
     }
