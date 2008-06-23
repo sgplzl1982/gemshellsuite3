@@ -6,11 +6,13 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -54,7 +56,7 @@ public class AppNames implements Serializable {
         this.name = name;
     }
     
-    @ManyToOne
+    @OneToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
     public AppCategories getAppCategories() {
         return appCategories;
     }
@@ -63,7 +65,7 @@ public class AppNames implements Serializable {
         this.appCategories = appCategories;
     }
 
-    @ManyToOne
+    @OneToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
     public AppFamilies getAppfamilies() {
         return appfamilies;
     }
