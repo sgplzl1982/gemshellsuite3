@@ -5,15 +5,15 @@
 
 package com.gemalto.gemshellsuitev3.ejb.session.stateless.factory;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 /**
  *
  * @author nicolas
  */
-@Local
-public interface CdcProductsTestFactoryLocal {
-
-    void persistObject(Object object);
+@Remote
+public interface CdcProductsTestFactoryRemote {
     
+     void persistObject(Object object);
+
 }
