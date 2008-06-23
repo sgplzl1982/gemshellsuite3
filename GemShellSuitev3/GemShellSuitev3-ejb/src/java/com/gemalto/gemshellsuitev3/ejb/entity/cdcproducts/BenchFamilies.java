@@ -6,36 +6,34 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
-import java.util.Collection;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author nicolas
  */
 @Entity
-public class AppCategories implements Serializable {
+public class BenchFamilies implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    private Long id;
     private String name;
     private String comments;
-    private Collection<BenchFamilies> benchFamilies;    
-    private Long appCategoryId;
-    
+    private AppCategories appCategories;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    
-    public Long getAppCategoryId() {
-        return appCategoryId;
+    @GeneratedValue(strategy = GenerationType.AUTO)    
+    public Long getId() {
+        return id;
     }
 
-    public void setAppCategoryId(Long id) {
-        this.appCategoryId = id;
+    public void setId(Long id) {
+        this.id = id;
     }
     
     public String getComments() {
@@ -54,12 +52,13 @@ public class AppCategories implements Serializable {
         this.name = name;
     }
     
-    @OneToMany(mappedBy="appCategories",cascade={CascadeType.REMOVE,CascadeType.PERSIST})
-    public Collection<BenchFamilies> getBenchFamilies() {
-        return benchFamilies;
+    @ManyToOne
+    @JoinColumn(name="AppNamesId")
+    public AppCategories getAppCategories() {
+        return appCategories;
     }
 
-    public void setBenchFamilies(Collection<BenchFamilies> benchFamilies) {
-        this.benchFamilies = benchFamilies;
+    public void setAppCategories(AppCategories appCategories) {
+        this.appCategories = appCategories;
     }
 }
