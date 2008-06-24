@@ -6,12 +6,15 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -21,19 +24,22 @@ import javax.persistence.ManyToOne;
 public class BenchFamilies implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Long id;
+    private Long BenchFamiliesId;
     private String name;
-    private String comments;
+    private String comments;    
+    
+    private Collection<BenchNames> benchNames;
+    
     private AppCategories appCategories;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     public Long getId() {
-        return id;
+        return BenchFamiliesId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.BenchFamiliesId = id;
     }
     
     public String getComments() {
@@ -60,5 +66,14 @@ public class BenchFamilies implements Serializable {
 
     public void setAppCategories(AppCategories appCategories) {
         this.appCategories = appCategories;
+    }
+    
+    @OneToMany(mappedBy="benchFamilies",cascade={CascadeType.ALL})
+    public Collection<BenchNames> getBenchNames() {
+        return benchNames;
+    }
+
+    public void setBenchNames(Collection<BenchNames> benchNames) {
+        this.benchNames = benchNames;
     }
 }

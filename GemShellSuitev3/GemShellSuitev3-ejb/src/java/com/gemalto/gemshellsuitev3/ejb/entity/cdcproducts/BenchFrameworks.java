@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,26 +24,26 @@ import javax.persistence.TemporalType;
 public class BenchFrameworks implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Long id;
+    private Long BenchFrameworksId;
     private String name;
-    // private BenchNames benchNames;
+    private BenchNames benchNames;
     private int version;
     private int release;
     // private Uses uses;
     // private Consumption consumption
     // private States states
     // private Peoples peoples
-    private Date create;
+    private Date created;
     private String comments;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
-        return id;
+        return BenchFrameworksId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.BenchFrameworksId = id;
     }
     
     public String getComments() {
@@ -53,12 +55,12 @@ public class BenchFrameworks implements Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    public Date getCreate() {
-        return create;  
+    public Date getCreated() {
+        return created;  
     }
 
-    public void setCreate(Date create) {
-        this.create = create;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public String getName() {
@@ -83,5 +85,15 @@ public class BenchFrameworks implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="BenchNamesId")
+    public BenchNames getBenchNames() {
+        return benchNames;
+    }
+
+    public void setBenchNames(BenchNames benchNames) {
+        this.benchNames = benchNames;
     }
 }

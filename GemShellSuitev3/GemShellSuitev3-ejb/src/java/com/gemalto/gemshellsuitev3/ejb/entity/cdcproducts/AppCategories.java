@@ -24,12 +24,14 @@ public class AppCategories implements Serializable {
     
     private String name;
     private String comments;
-    private Collection<BenchFamilies> benchFamilies;    
     private Long appCategoryId;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Collection<AppNames> appNames;
+
+    private Collection<BenchFamilies> benchFamilies;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)    
     public Long getAppCategoryId() {
         return appCategoryId;
     }
@@ -54,7 +56,16 @@ public class AppCategories implements Serializable {
         this.name = name;
     }
     
-    @OneToMany(mappedBy="appCategories",cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+   @OneToMany(mappedBy="appCategories",cascade=CascadeType.ALL)
+    public Collection<AppNames> getAppNames() {
+        return appNames;
+    }
+    
+    public void setAppNames(Collection<AppNames> appNames) {
+        this.appNames = appNames;
+    }
+    
+    @OneToMany(mappedBy="appCategories",cascade={CascadeType.ALL})
     public Collection<BenchFamilies> getBenchFamilies() {
         return benchFamilies;
     }

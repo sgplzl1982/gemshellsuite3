@@ -22,21 +22,21 @@ public class AppTypes implements Serializable
 {
     private static final long serialVersionUID = 1L;
     
-    private String name;
+    private Long appTypesid;
+    private String name;    
+    private AppNames appNames;
     private String comment;
-    private AppNames appNames;    
-    private Long id;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
     public Long getId() 
     {
-        return id;
+        return appTypesid;
     }
 
     public void setId(Long id) 
     {
-        this.id = id;
+        this.appTypesid = id;
     }
     
     public String getComment() {

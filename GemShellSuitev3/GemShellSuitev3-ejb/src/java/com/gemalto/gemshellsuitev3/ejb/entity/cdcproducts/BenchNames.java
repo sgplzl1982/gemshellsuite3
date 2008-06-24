@@ -6,11 +6,15 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,23 +24,26 @@ import javax.persistence.ManyToOne;
 public class BenchNames implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Long id;
+    private Long BenchNamesId;
     private String name;
     private BenchFamilies benchFamilies;
     private String comments;
     // private States states;
+    
+    private Collection<BenchFrameworks> benchFrameworks;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
-        return id;
+        return BenchNamesId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.BenchNamesId = id;
     }
     
-    @ManyToOne
+    @ManyToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    @JoinColumn(name="BenchFamiliesId")
     public BenchFamilies getBenchFamilies() {
         return benchFamilies;
     }
@@ -59,5 +66,14 @@ public class BenchNames implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+     @OneToMany(mappedBy="benchNames",cascade={CascadeType.ALL})
+    public Collection<BenchFrameworks> getBenchFrameworks() {
+        return benchFrameworks;
+    }
+
+    public void setBenchFrameworks(Collection<BenchFrameworks> benchFrameworks) {
+        this.benchFrameworks = benchFrameworks;
     }
 }

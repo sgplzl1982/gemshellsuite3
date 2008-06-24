@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -24,15 +25,14 @@ import javax.persistence.OneToOne;
 public class AppNames implements Serializable {
     private static final long serialVersionUID = 1L;
     
+    private Long appNameId;
     private String name;
     private String comments;
 
     private AppFamilies appfamilies;
     private AppCategories appCategories;
     
-    private Collection<AppTypes> appTypes;    
-    
-    private Long appNameId;
+    private Collection<AppTypes> appTypes;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)    
@@ -60,30 +60,33 @@ public class AppNames implements Serializable {
         this.name = name;
     }
     
-    @OneToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
-    public AppCategories getAppCategories() {
-        return appCategories;
-    }
-
-    public void setAppCategories(AppCategories appCategories) {
-        this.appCategories = appCategories;
-    }
-
-    @OneToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    @ManyToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    @JoinColumn(name="AppFamiliesId")
     public AppFamilies getAppfamilies() {
         return appfamilies;
     }
 
     public void setAppfamilies(AppFamilies appfamilies) {
         this.appfamilies = appfamilies;
-    }
+    }    
     
-    @OneToMany(mappedBy="appNames",cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    @ManyToOne(cascade={CascadeType.REMOVE,CascadeType.PERSIST})
+    @JoinColumn(name="AppCategoriesId")
+    public AppCategories getAppCategories() {
+        return appCategories;
+    }
+
+    public void setAppCategories(AppCategories appCategories) {
+        this.appCategories = appCategories;
+    }    
+    
+    
+    @OneToMany(mappedBy="appNames",cascade={CascadeType.ALL})
     public Collection<AppTypes> getAppTypes() {
         return appTypes;
     }
 
     public void setAppTypes(Collection<AppTypes> appTypes) {
         this.appTypes = appTypes;
-    }
+    }    
 }
