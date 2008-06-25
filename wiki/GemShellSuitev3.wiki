@@ -1,8 +1,8 @@
-#summary One-sentence summary of this page.
+#summary GemShell Suite v3 Wiki
 
 = Introduction =
 
-GemShel lSuite v3 Wiki
+GemShell Suite v3 Wiki
 
 
 = Details =
