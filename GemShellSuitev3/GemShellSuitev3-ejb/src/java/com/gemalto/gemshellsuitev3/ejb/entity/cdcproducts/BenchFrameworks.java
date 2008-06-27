@@ -30,7 +30,7 @@ public class BenchFrameworks implements Serializable {
     private int version;
     private int release;
     // private Uses uses;
-    // private Consumption consumption
+    // private Consumptions consumptions
     private States states;
         
     // private Peoples peoples
