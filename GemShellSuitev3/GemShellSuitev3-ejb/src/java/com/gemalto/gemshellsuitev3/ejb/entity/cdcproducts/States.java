@@ -6,10 +6,13 @@
 package com.gemalto.gemshellsuitev3.ejb.entity.cdcproducts;
 
 import java.io.Serializable;
+import java.util.Collection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +26,8 @@ public class States implements Serializable
     private Long stateId;
     private String name;
     private String comments;
+    
+    private Collection<BenchFrameworks> benchFrameworks;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,4 +55,12 @@ public class States implements Serializable
         this.name = name;
     }
 
+    @OneToMany(mappedBy="states",cascade={CascadeType.ALL})
+    public Collection<BenchFrameworks> getBenchFrameworks() {
+        return benchFrameworks;
+    }
+
+    public void setBenchFrameworks(Collection<BenchFrameworks> benchFrameworks) {
+        this.benchFrameworks = benchFrameworks;
+    }
 }
