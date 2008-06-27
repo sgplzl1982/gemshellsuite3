@@ -37,7 +37,7 @@ public class BenchNames implements Serializable {
     public Long getId() {
         return BenchNamesId;
     }
-
+    
     public void setId(Long id) {
         this.BenchNamesId = id;
     }
