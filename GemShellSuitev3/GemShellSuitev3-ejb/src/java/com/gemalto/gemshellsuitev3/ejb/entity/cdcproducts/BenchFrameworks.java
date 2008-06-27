@@ -29,7 +29,7 @@ public class BenchFrameworks implements Serializable {
     private BenchNames benchNames;
     private int version;
     private int release;
-    // private Uses uses;
+    private Uses uses;    
     private Consumptions consumptions;    
     private States states;
         
@@ -116,5 +116,15 @@ public class BenchFrameworks implements Serializable {
 
     public void setConsumptions(Consumptions consumptions) {
         this.consumptions = consumptions;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="usesId")
+    public Uses getUses() {
+        return uses;
+    }
+
+    public void setUses(Uses uses) {
+        this.uses = uses;
     }
 }
