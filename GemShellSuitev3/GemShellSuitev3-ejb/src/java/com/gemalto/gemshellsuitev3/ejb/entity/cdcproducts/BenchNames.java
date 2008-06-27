@@ -28,7 +28,7 @@ public class BenchNames implements Serializable {
     private String name;
     private BenchFamilies benchFamilies;
     private String comments;
-    // private States states;
+    private States states;
     
     private Collection<BenchFrameworks> benchFrameworks;
 
@@ -75,5 +75,15 @@ public class BenchNames implements Serializable {
 
     public void setBenchFrameworks(Collection<BenchFrameworks> benchFrameworks) {
         this.benchFrameworks = benchFrameworks;
+    }
+    
+    @ManyToOne
+    @JoinColumn(name="StatesId")
+    public States getStates() {
+        return states;
+    }
+
+    public void setStates(States states) {
+        this.states = states;
     }
 }

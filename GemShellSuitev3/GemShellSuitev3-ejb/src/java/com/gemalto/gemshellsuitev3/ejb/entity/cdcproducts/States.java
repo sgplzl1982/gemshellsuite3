@@ -28,6 +28,7 @@ public class States implements Serializable
     private String comments;
     
     private Collection<BenchFrameworks> benchFrameworks;
+    private Collection<BenchNames> benchNames;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,5 +63,14 @@ public class States implements Serializable
 
     public void setBenchFrameworks(Collection<BenchFrameworks> benchFrameworks) {
         this.benchFrameworks = benchFrameworks;
+    }
+    
+    @OneToMany(mappedBy="states",cascade={CascadeType.ALL})
+    public Collection<BenchNames> getBenchNames() {
+        return benchNames;
+    }
+
+    public void setBenchNames(Collection<BenchNames> benchNames) {
+        this.benchNames = benchNames;
     }
 }
