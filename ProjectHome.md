@@ -1,0 +1,1 @@
+GemShell Suite and its FrameWork based on EJB3 technology
